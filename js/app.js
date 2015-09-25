@@ -22,7 +22,6 @@ $(document).ready(function(){
   	});
 
   	/*--- create random number ---*/
-
   	var number; 
 
   	function randNum(){
@@ -37,16 +36,31 @@ $(document).ready(function(){
   		counter++;
   		$('#count').text(counter);
   		var guess = $('#userGuess').val();
+  		var distance = Math.abs(number-guess);
+  		
+  		function guessCount(){
+  			$('#guessList').append("<li>"+guess+"</li>"); 
+  		}
+
   		if (guess == number) {
   			$('#feedback').text("You've guessed the number!!");
-  			$('#guessList').append("<li>"+guess+"</li>");
-  		} else if (guess < number) {
-  			$('#feedback').text("You'll need to go higher.");
-  			$('#guessList').append("<li>"+guess+"</li>");
-  		} else if (guess > number) {
-  			$('#feedback').text("You'll need to go lower.");
-  			$('#guessList').append("<li>"+guess+"</li>");
-  		}
+  			guessCount();
+  		} else if (distance > 50) {
+  			$('#feedback').text("Ice Cold");
+  			guessCount();
+  		} else if  (distance <= 50 && distance >= 30) {
+  			$('#feedback').text("Cold");
+  			guessCount();
+  		} else if (distance <= 30 && distance >= 20) {
+  			$('#feedback').text("Warm");
+  			guessCount();
+  		} else if (distance <= 20 && distance >= 10) {
+  			$('#feedback').text("Hot");
+  			guessCount();
+  		} else if (distance <= 10 && distance >= 1) {
+  			$('#feedback').text("Very Hot");
+  			guessCount();
+  		} 
   	});
 
   	/*--- guess counter ---*/
