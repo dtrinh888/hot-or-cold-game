@@ -22,18 +22,18 @@ $(document).ready(function(){
 
   	/*--- guess button ---*/
   	$("#guessButton").click(function(){
-  		var guess = $('#userGuess').val;
+  		var guess = $('#userGuess').val();
   		if (guess == number) {
-  			$('#guessList').text("<li>You've guessed the number!!</li>");
+  			$('#guessList').append($("<li>You've guessed the number!!</li>"));
   		} else if (guess < number) {
-  			$('#guessList').text("<li>You'll need to go higher.</li>");
+  			$('#guessList').append($("<li>You'll need to go higher.</li>"));
   		} else if (guess > number) {
-  			$('#guessList').text("<li>"+"You'll need to go lower."+'</li>')
+  			$('#guessList').append($("<li>"+"You'll need to go lower."+'</li>'));
   		}
   	});
 
   	/*--- guess counter ---*/
-  	counter = 0
+  	var counter = 0
 
 });
 
