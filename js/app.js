@@ -14,26 +14,44 @@ $(document).ready(function(){
 
   	/*--- start new game ---*/
   	$(".new").click(function(){
-  		$('#count').reset();
+  		$('#feedback').text("Make your Guess!");
+  		$('#userGuess').val("");
+  		$('#count').text(counter=0);
+  		$('#guessList').empty();
+  		randNum();
   	});
 
   	/*--- create random number ---*/
-  	var number = Math.floor(Math.random() * 100) + 1;
+
+  	var number; 
+
+  	function randNum(){
+  		number = Math.floor(Math.random() * 100) + 1;
+  	}
+
+  	randNum();
 
   	/*--- guess button ---*/
-  	$("#guessButton").click(function(){
+  	$("#guessButton").click(function(e) {
+  		e.preventDefault();
+  		counter++;
+  		$('#count').text(counter);
   		var guess = $('#userGuess').val();
   		if (guess == number) {
-  			$('#guessList').append($("<li>You've guessed the number!!</li>"));
+  			$('#feedback').text("You've guessed the number!!");
+  			$('#guessList').append("<li>"+guess+"</li>");
   		} else if (guess < number) {
-  			$('#guessList').append($("<li>You'll need to go higher.</li>"));
+  			$('#feedback').text("You'll need to go higher.");
+  			$('#guessList').append("<li>"+guess+"</li>");
   		} else if (guess > number) {
-  			$('#guessList').append($("<li>"+"You'll need to go lower."+'</li>'));
+  			$('#feedback').text("You'll need to go lower.");
+  			$('#guessList').append("<li>"+guess+"</li>");
   		}
   	});
 
   	/*--- guess counter ---*/
-  	var counter = 0
+  	var counter = 0;
+
 
 });
 
