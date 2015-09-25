@@ -17,7 +17,8 @@ $(document).ready(function(){
   		userGuess();
   		$('#count').text(counter=0);
   		$('#guessList').empty();
-  		randNum();
+  		number = randNum(); 
+
   	});
 
   	/*--- empty #userGuess ---*/
@@ -27,13 +28,13 @@ $(document).ready(function(){
   	}
 
   	/*--- create random number ---*/
-  	var number = randNum();  
+  	var number;  
 
   	function randNum(){
   		return Math.floor(Math.random() * 100) + 1;
   	}	
 
-  	
+  	 number = randNum();	
 
 	/*--- guess counter ---*/
   	var counter = 0;
