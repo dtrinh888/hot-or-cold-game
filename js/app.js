@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	
 	/*--- Display information modal box ---*/
@@ -15,20 +14,29 @@ $(document).ready(function(){
   	/*--- start new game ---*/
   	$(".new").click(function(){
   		$('#feedback').text("Make your Guess!");
-  		$('#userGuess').val("");
+  		userGuess();
   		$('#count').text(counter=0);
   		$('#guessList').empty();
   		randNum();
   	});
 
-  	/*--- create random number ---*/
-  	var number; 
+  	/*--- empty #userGuess ---*/
 
-  	function randNum(){
-  		number = Math.floor(Math.random() * 100) + 1;
+  	function userGuess() {
+  		$('#userGuess').val("");
   	}
 
-  	randNum();
+  	/*--- create random number ---*/
+  	var number = randNum();  
+
+  	function randNum(){
+  		return Math.floor(Math.random() * 100) + 1;
+  	}	
+
+  	
+
+	/*--- guess counter ---*/
+  	var counter = 0;
 
   	/*--- guess button ---*/
   	$("#guessButton").click(function(e) {
@@ -44,29 +52,20 @@ $(document).ready(function(){
 
   		if (guess == number) {
   			$('#feedback').text("You've guessed the number!!");
-  			guessCount();
   		} else if (distance > 50) {
-  			$('#feedback').text("Ice Cold");
-  			guessCount();
-  		} else if  (distance <= 50 && distance >= 30) {
-  			$('#feedback').text("Cold");
-  			guessCount();
+  			$('#feedback').text("Ice Cold").css({"background-color": "blue", "color": "white"});
+  		} else if (distance <= 50 && distance >= 30) {
+  			$('#feedback').text("Cold").css({"background-color": "#A5F2F3", "color": "blue"});
   		} else if (distance <= 30 && distance >= 20) {
-  			$('#feedback').text("Warm");
-  			guessCount();
+  			$('#feedback').text("Warm").css({"background-color": "yellow", "color": "blue"});
   		} else if (distance <= 20 && distance >= 10) {
-  			$('#feedback').text("Hot");
-  			guessCount();
+  			$('#feedback').text("Hot").css({"background-color": "red", "color": "yellow"});
   		} else if (distance <= 10 && distance >= 1) {
-  			$('#feedback').text("Very Hot");
-  			guessCount();
-  		} 
+  			$('#feedback').text("Very Hot").css({"background-color": "#B22222", "color": "yellow"});	
+  		}
+
+  		userGuess(); 
+  		guessCount();
+
   	});
-
-  	/*--- guess counter ---*/
-  	var counter = 0;
-
-
 });
-
-
