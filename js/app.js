@@ -35,22 +35,26 @@ $(document).ready(function(){
   	}	
 
   	 number = randNum();
-
-  	function guessCount(){
+  	 
+	/*--- #guessList guess append ---*/
+  	var guess;
+	function guessCount(){
 		$('#guessList').append("<li>"+guess+"</li>"); 
 	}
-	
+
 	/*--- guess counter ---*/
   	var counter = 0;
 
   	/*--- guess button ---*/
   	$("#guessButton").click(function(e) {
+  		
   		e.preventDefault();
   		counter++;
   		$('#count').text(counter);
-  		var guess = $('#userGuess').val();
-  		var distance = Math.abs(number-guess); 		
 
+  		var distance = Math.abs(number-guess);
+  		guess = $('#userGuess').val();
+	  	
   		if (guess == number) {
   			$('#feedback').text("You've guessed the number!!");
   		} else if (distance > 50) {
