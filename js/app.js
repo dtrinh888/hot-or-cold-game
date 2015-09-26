@@ -34,8 +34,12 @@ $(document).ready(function(){
   		return Math.floor(Math.random() * 100) + 1;
   	}	
 
-  	 number = randNum();	
+  	 number = randNum();
 
+  	function guessCount(){
+		$('#guessList').append("<li>"+guess+"</li>"); 
+	}
+	
 	/*--- guess counter ---*/
   	var counter = 0;
 
@@ -45,11 +49,7 @@ $(document).ready(function(){
   		counter++;
   		$('#count').text(counter);
   		var guess = $('#userGuess').val();
-  		var distance = Math.abs(number-guess);
-  		
-  		function guessCount(){
-  			$('#guessList').append("<li>"+guess+"</li>"); 
-  		}
+  		var distance = Math.abs(number-guess); 		
 
   		if (guess == number) {
   			$('#feedback').text("You've guessed the number!!");
